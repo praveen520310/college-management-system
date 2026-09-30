@@ -1,0 +1,16 @@
+com/example/backend/DepartmentController.class
+com/example/backend/UserController.class
+com/example/backend/Department.class
+com/example/backend/DepartmentRepository.class
+com/example/backend/UserRepository.class
+com/example/backend/Student.class
+com/example/backend/User.class
+com/example/backend/Course.class
+com/example/backend/BackendApplication.class
+com/example/backend/LoginController.class
+com/example/backend/LoginRequest.class
+com/example/backend/CourseController.class
+com/example/backend/StudentRepository.class
+com/example/backend/HelloController.class
+com/example/backend/StudentController.class
+com/example/backend/CourseRepository.class
