@@ -6,7 +6,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/departments")
-@CrossOrigin
 public class DepartmentController {
 
     private final DepartmentRepository departmentRepository;

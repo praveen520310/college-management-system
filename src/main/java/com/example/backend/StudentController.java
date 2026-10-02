@@ -7,8 +7,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/students")
-@CrossOrigin
 public class StudentController {
+
+    private static final String STUDENT_NOT_FOUND = "Student not found";
+    private static final String USER_ROLE = "userRole";
 
     private final StudentRepository studentRepository;
     private final UserRepository userRepository;
@@ -41,7 +43,7 @@ public class StudentController {
 
         return studentRepository.findById(id)
                 .orElseThrow(() ->
-                        new RuntimeException("Student not found"));
+                        new RuntimeException(STUDENT_NOT_FOUND));
     }
 
     // ADMIN + NORMAL USER
@@ -51,7 +53,7 @@ public class StudentController {
             HttpSession session) {
 
         String role =
-                (String) session.getAttribute("userRole");
+                (String) session.getAttribute(USER_ROLE);
 
         if (role == null) {
             return "Please login first";
@@ -114,7 +116,7 @@ public class StudentController {
             HttpSession session) {
 
         String role =
-                (String) session.getAttribute("userRole");
+                (String) session.getAttribute(USER_ROLE);
 
         if (!"ADMIN".equals(role)) {
             return "Access denied. Admin only.";
@@ -124,7 +126,7 @@ public class StudentController {
                 studentRepository.findById(id)
                         .orElseThrow(() ->
                                 new RuntimeException(
-                                        "Student not found"));
+                                        STUDENT_NOT_FOUND));
 
         Integer departmentId =
                 updatedStudent.getDepartment().getId();
@@ -182,14 +184,14 @@ public class StudentController {
             HttpSession session) {
 
         String role =
-                (String) session.getAttribute("userRole");
+                (String) session.getAttribute(USER_ROLE);
 
         if (!"ADMIN".equals(role)) {
             return "Access denied. Admin only.";
         }
 
         if (!studentRepository.existsById(id)) {
-            return "Student not found";
+            return STUDENT_NOT_FOUND;
         }
 
         studentRepository.deleteById(id);

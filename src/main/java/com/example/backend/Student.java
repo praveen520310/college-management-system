@@ -47,6 +47,7 @@ public class Student {
     private Integer semester;
 
     public Student() {
+        // Required by JPA/Hibernate for entity instantiation.
     }
 
     public Integer getId() {

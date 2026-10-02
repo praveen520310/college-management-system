@@ -8,8 +8,9 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
-@CrossOrigin
 public class UserController {
+
+    private static final String USER_ROLE = "userRole";
 
     private final UserRepository userRepository;
 
@@ -47,7 +48,7 @@ public class UserController {
                 (String) session.getAttribute("userEmail");
 
         String role =
-                (String) session.getAttribute("userRole");
+                (String) session.getAttribute(USER_ROLE);
 
         if (email == null || role == null) {
             return "Please login first";
@@ -73,7 +74,7 @@ public class UserController {
     public Object getUsers(HttpSession session) {
 
         String role =
-                (String) session.getAttribute("userRole");
+                (String) session.getAttribute(USER_ROLE);
 
         if (role == null) {
             return "Please login first";
@@ -93,7 +94,7 @@ public class UserController {
             HttpSession session) {
 
         String role =
-                (String) session.getAttribute("userRole");
+                (String) session.getAttribute(USER_ROLE);
 
         if (!"ADMIN".equals(role)) {
             return "Access denied. Admin only.";
